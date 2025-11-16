@@ -10,8 +10,7 @@ LEFT JOIN company_dim AS company
 WHERE 
     (job_location LIKE '%MD' OR 
     job_work_from_home = TRUE) AND
-    job_country = 'United States' AND
-    salary_year_avg IS NOT NULL
+    job_country = 'United States'
 ORDER BY salary_year_avg DESC;
 
 
