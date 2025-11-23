@@ -1,6 +1,6 @@
+
 SELECT 
     job_location AS location,
-    job_work_from_home AS work_from_home,
     job_title_short AS job_title,
     salary_year_avg AS yearly_salary,
     company.name AS company_name

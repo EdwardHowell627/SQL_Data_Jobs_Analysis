@@ -15,7 +15,6 @@ GROUP BY year_posted
 ORDER BY year_posted
 
 
-
 -- Work From Home
 SELECT
     CASE

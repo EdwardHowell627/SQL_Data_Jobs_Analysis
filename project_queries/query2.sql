@@ -1,3 +1,4 @@
+
 SELECT 
     job_title_short AS job_title,
     COUNT(job_id) AS job_count,

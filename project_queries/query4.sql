@@ -1,3 +1,4 @@
+
 WITH company_jobs AS (
     SELECT
         company_id,

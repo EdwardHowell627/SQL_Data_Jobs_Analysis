@@ -1,3 +1,4 @@
+
 WITH jobs_per_skill AS(
     SELECT
         skills_job.skill_id,
