@@ -1,7 +1,7 @@
 SELECT 
     job_title_short AS job_title,
     COUNT(job_id) AS job_count,
-    AVG(salary_year_avg) AS salary_average,
+    ROUND(AVG(salary_year_avg)) AS salary_average,
     COUNT(salary_year_avg) AS salary_datapoints
 FROM job_postings_fact
 WHERE 
