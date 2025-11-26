@@ -189,8 +189,7 @@ SELECT
 FROM jobs_per_skill
 INNER JOIN skills_dim
     ON jobs_per_skill.skill_id = skills_dim.skill_id
-ORDER BY
-    skill_count DESC;
+ORDER BY skill_count DESC;
 ```
 | skill_count | skill_name | skill_type     | average_salary | salary_datapoints |
 |-------------|------------|----------------|----------------|--------------------|
@@ -244,7 +243,8 @@ SELECT
     link_google
 FROM company_jobs
 INNER JOIN company_dim
-    ON company_jobs.company_id = company_dim.company_id;
+    ON company_jobs.company_id = company_dim.company_id
+ORDER BY job_count DESC;
 ```
 | company_name                                                     | average_salary | salary_datapoints | job_count |
 |------------------------------------------------------------------|----------------|--------------------|-----------|

@@ -31,4 +31,5 @@ SELECT
     link_google
 FROM company_jobs
 INNER JOIN company_dim
-    ON company_jobs.company_id = company_dim.company_id;
+    ON company_jobs.company_id = company_dim.company_id
+ORDER BY job_count DESC;
