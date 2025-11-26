@@ -3,6 +3,7 @@ WITH company_jobs AS (
     SELECT
         company_id,
         ROUND(AVG(salary_year_avg)) AS average_salary,
+        COUNT(salary_year_avg) AS salary_datapoints,
         COUNT(job_postings.company_id) AS job_count
     FROM job_postings_fact AS job_postings
     WHERE 
@@ -15,7 +16,8 @@ WITH company_jobs AS (
             INNER JOIN skills_dim
                 ON skills_job.skill_id = skills_dim.skill_id
             WHERE
-                skills IN ('python', 'r', 'sql', 'sas', 'excel', 'power bi', 'matlab')
+                skills IN ('python', 'r', 'sql', 'sas', 'excel', 
+                'power bi', 'matlab')
         )
     GROUP BY company_id
     ORDER BY job_count DESC
@@ -24,6 +26,7 @@ WITH company_jobs AS (
 SELECT 
     company_dim.name AS company_name,
     average_salary,
+    salary_datapoints,
     job_count,
     link_google
 FROM company_jobs

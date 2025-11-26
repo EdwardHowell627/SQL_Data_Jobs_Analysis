@@ -14,7 +14,6 @@ WITH jobs_per_skill AS(
     GROUP BY skills_job.skill_id
 )
 
-  
 SELECT
     skill_count,
     skills AS skill_name,
