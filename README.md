@@ -21,7 +21,7 @@ The skills_job_dim table is an intersection table meant to document which skills
 
 The skills_dim table documents the skills, providing details like the name of the skill and what type it is such as "programming" or "analyst_tools".
   
-To see the SQL statements used to create the database see: [sql_load](database_creation)  
+To see the SQL statements used to create the database see: [database_creation](database_creation)  
 *The statements were provided by the same source as the dataset so they will not be covered in this project but I do unstand them and have the skills to create a database on my own in SQL.*
 
 # Tools Used
