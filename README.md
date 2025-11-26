@@ -1,6 +1,6 @@
 # Introduction
 
-This project is the first of multiple projects meant to showcase my knowledge of GitHub and various data science tools, in this case SQL. For this project, I worked with a dataset documenting over 1,000,000 data job (Data Scientist, Data Engineer, etc.) postings. Since this project focuses on my knowledge of SQL, I will explain all my queries and outputs without focusing on visualizations, as my other projects will cover the visualization process more extensively.
+This project is the first of multiple projects meant to showcase my knowledge of GitHub and various data science tools, in this case SQL. For this project, I worked with a dataset documenting over 1,000,000 data job postings online (data scientist, data engineer, etc.). Since this project focuses on my knowledge of SQL, I will explain all my queries and outputs without focusing on visualizations, as my other projects will cover the visualization process more extensively.
 
 From this dataset, I wanted to know a few things:
 - Which skills are in the most demand for data science jobs?
@@ -247,23 +247,24 @@ FROM company_jobs
 INNER JOIN company_dim
     ON company_jobs.company_id = company_dim.company_id;
 ```
-| company_name                                                     | average_salary | job_count | link_google |
-|------------------------------------------------------------------|----------------|-----------|-------------|
-| Guidehouse                                                       | 107500         | 190       | https://www.google.com/search?hl=en&gl=us&q=Guidehouse&sa=X&ved=0ahUKEwjmuK2Mt8v8AhUOE1kFHQLZCD44FBCYkAIIsgw |
-| Booz Allen Hamilton                                              | 128046         | 148       | https://www.google.com/search?sca_esv=314a65cdcd6d4ae9&sca_upv=1&hl=en&gl=us&q=Booz+Allen+Hamilton&sa=X&ved=0ahUKEwjS0N6Xr8qCAxX3TTABHT5gBss4bhCYkAIIog4 |
-| Leidos                                                           | 115571         | 104       | https://www.google.com/search?ucbcb=1&gl=us&hl=en&q=Leidos&sa=X&ved=0ahUKEwjxqNWqprr-AhWSElkFHbd0CKc4PBCYkAII0ws |
-| Peraton                                                          | 142667         | 44        | https://www.google.com/search?sca_esv=575710480&hl=en&gl=us&q=Peraton&sa=X&ved=0ahUKEwj3s-HlyYuCAxX4mWoFHV2zCCk4KBCYkAIIngo |
-| The Johns Hopkins University Applied Physics Laboratory          |                | 38        | https://www.google.com/search?gl=us&hl=en&q=The+Johns+Hopkins+University+Applied+Physics+Laboratory&sa=X&ved=0ahUKEwi2-qLtp_n-AhW3lWoFHVEAC9E4WhCYkAIImAo |
-| ClearanceJobs                                                    |                | 30        | https://www.google.com/search?ucbcb=1&gl=us&hl=en&q=ClearanceJobs&sa=X&ved=0ahUKEwj2t_TqlNj8AhUvFVkFHW8YB204bhCYkAII1go |
-| LEIDOS                                                           |                | 25        | https://www.google.com/search?sca_esv=558499452&gl=us&hl=en&q=LEIDOS&sa=X&ved=0ahUKEwjFrfz8yOqAAxXAtokEHXfhAOw4KBCYkAII5As |
-| BlueHalo                                                         | 108416         | 19        | https://www.google.com/search?hl=en&gl=us&q=BlueHalo&sa=X&ved=0ahUKEwjVwsWr3NX9AhVsjIkEHYefDbY4MhCYkAIIkw0 |
-| Blend360                                                         | 91600          | 18        | https://www.google.com/search?gl=us&hl=en&q=Blend360&sa=X&ved=0ahUKEwjuo-66wIX-AhWAnGoFHZEyCiU4ChCYkAII5A0 |
-| CACI                                                             |                | 18        | https://www.google.com/search?q=CACI&sa=X&ved=0ahUKEwi8kfKats7-AhWiQTABHR_kAiM4MhCYkAIIogw |
+| company_name                                                     | average_salary | salary_datapoints | job_count |
+|------------------------------------------------------------------|----------------|--------------------|-----------|
+| Guidehouse                                                       | 107500         | 3                  | 190       |
+| Booz Allen Hamilton                                              | 128046         | 13                 | 148       |
+| Leidos                                                           | 115571         | 18                 | 104       |
+| Peraton                                                          | 142667         | 6                  | 44        |
+| The Johns Hopkins University Applied Physics Laboratory          |                | 0                  | 38        |
+| ClearanceJobs                                                    |                | 0                  | 30        |
+| LEIDOS                                                           |                | 0                  | 25        |
+| BlueHalo                                                         | 108416         | 1                  | 19        |
+| Blend360                                                         | 91600          | 5                  | 18        |
+| CACI                                                             |                | 0                  | 18        |
 
 
-*The first 10 of 577 rows*
+*The first 10 of 577 rows*  
+*The Google link column has been exluded due to it's length*
 
-From the results we can see that Guidehouse and Booz Allen Hamilton have made the most job postings, with a combined 338 postings for data scientists. However, Booz Allen Hamilton seems to be offering higher salaries 
+From the results we can see that Guidehouse and Booz Allen Hamilton have made the most job postings, with a combined 338 postings for data scientists. However, Booz Allen Hamilton seems to be offering higher salaries with more datapoints to back it. Peraton offer the highest average salary among the top companies but has only a third of the offerings of Booz Allen Hamilton.
 
 # Conclusion and Takeaway
 
@@ -272,6 +273,8 @@ Through this project I learned a lot about the data science job market and how I
 First, I should take time to build up knowledge in high-demand skills I'm less familiar with, such as Python and Power BI/Tableau. This project is the first of many I plan on doing. Eventually I plan on having a project for Excel, Power BI, and Python.
 
 Second, there are lots of jobs in my field, and companies like Guidehouse and others have collectively made hundreds of postings in my skill set. This doesn't even account for jobs and internships that were not posted online or the thousands of work-from-home jobs.
+
+Third, jobs requiring skills in Java offer the highest pay among the top skills, but other similar skills like Python are much more common with a still comparable salary. Similarly, the company Peraton offers the highest-paying jobs among the top companies, but Booz Allen Hamilton has made more job postings with comparable salaries.
 
 Thank you for reading my SQL project. I hope you found some useful takeaways for yourself too. 
 
