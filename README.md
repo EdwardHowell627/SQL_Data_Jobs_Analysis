@@ -11,7 +11,7 @@ From this dataset, I wanted to know a few things:
 
 ![Visual of the tables in the dataset](assets/Database_Tables.png)
 
-*The Dataset and visual above are sourced from Luke Barousse on YouTube*  
+*The dataset and visual above are sourced from Luke Barousse on YouTube*  
 *https://www.youtube.com/watch?v=7mz73uXD9DA*
 
 The database as visualized above contains 4 tables. The largest table, job_postings_fact contains the key details about each documented job posting. It contains details such as the location of the job, whether it was work from home, the average salary, the company offering the job, and any skills needed for the job. 
@@ -30,9 +30,9 @@ To see the SQL statements used to create the database, see [database_creation](d
 
 # Tools Used
 
-**SQL:** Allows me to query the dataset.  
+**SQL:**  Used to query the dataset.  
 **PostgreSQL:** The chosen database management system.  
-**Visual Studio Code:** Used to write my SQL queries, connected to my PostgreSQL database using the SQLTools extension.  
+**Visual Studio Code:** Used to write my SQL queries. Connected to my PostgreSQL database using the SQLTools extension.  
 **Git & GitHub:** Used to document and share my SQL queries and analysis.
 
 # Analysis
@@ -43,7 +43,7 @@ All the discussed queries are stored in [project_queries](project_queries)
 
 For my first queries, I wanted to do some simple exploration of the dataset, so I started by determining what time period my dataset was based in and whether any months had more job postings than others. To accomplish this, I extracted the year and month from the dataset and grouped by both.   
 
-For each showcase query, I will provide the SQL statement and the results, which may be truncated if the resulting table from the query is too large.
+For each showcase query, I will provide the SQL statement and the resulting dataset, some have been truncated if there were too many rows.
 
 ```sql
 SELECT
