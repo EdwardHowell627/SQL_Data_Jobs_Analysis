@@ -1,28 +1,33 @@
 # Introduction
 
-This project is the first of multiple projects meant to showcase my knowledge in GitHub and various data science tools, in this case SQL. For this project I worked with a dataset documenting over 1,000,000 data job (Data Scientist, Data Engineer, etc.) postings. Since this project focuses on showcases my knowledge in SQL I will be explaining all my queries and outputs without any focus on visualizations as my other projects will cover the visualization process more extensively.
+This project is the first of multiple projects meant to showcase my knowledge of GitHub and various data science tools, in this case SQL. For this project, I worked with a dataset documenting over 1,000,000 data job (Data Scientist, Data Engineer, etc.) postings. Since this project focuses on showcases, my knowledge of SQL, I will explain all my queries and outputs without focus on visualizations as my other projects will cover the visualization process more extensively.
 
-From this dataset I wanted to know a few things:
+From this dataset, I wanted to know a few things:
 - Which skills are in the most demand for data science jobs?
-- Which companies are offering the most jobs that fit my skillset?
+- Which companies are offering the most jobs that fit my skill set?
 - Which skills and companies offer the highest pay?
 
 # Dataset
 
 ![Visual of the tables in the dataset](assets/Database_Tables.png)
-*Dataset and visual above sourced from Luke Barousse on Youtube 
+
+*Dataset and visual above sourced from Luke Barousse on YouTube 
+
 https://www.youtube.com/watch?v=7mz73uXD9DA*
 
 The database as visualized above contains 4 tables. The largest table, job_postings_fact contains the key details about each documented job postings. It contains details such as the location of the job, whether it was work from home, the average salary, the company offering the job, and any skills needed for the job. 
 
-The company_dim table documents the companies offering each job, providing details like the company name and a link to them on google.
+The company_dim table documents the companies offering each job, providing details like the company name and a link to them on Google.
 
-The skills_job_dim table is an intersection table meant to document which skills each job requires, jobs can have multiple skills which is why an intersection table was needed. 
+The skills_job_dim table is an intersection table meant to document which skills each job requires. An intersection table was necessary because jobs can have multiple skills and skills can have multiple jobs. 
 
-The skills_dim table documents the skills, providing details like the name of the skill and what type it is such as "programming" or "analyst_tools".
+The skills_dim table documents the skills, providing details like the name of the skill and what type it is, such as “programming” or “analyst_tools”.
+
   
-To see the SQL statements used to create the database see [database_creation](database_creation)  
-*The statements were provided by the same source as the dataset so they will not be covered in this project but I do unstand them and have the skills to create a database in SQL.*
+
+To see the SQL statements used to create the database, see [database_creation](database_creation)  
+
+*Since the same source as the dataset provided the statements, this project will not cover them. I understand the statements used and have the skills to create a database in SQL.*
 
 # Tools Used
 
@@ -33,12 +38,13 @@ To see the SQL statements used to create the database see [database_creation](da
 
 # Analysis
 
-All of the dicussed queries are stored in [project_queries](project_queries)  
+All the discussed queries are stored in [project_queries](project_queries)  
 
 ### Simple Exploration
 
-For my first queries I wanted to do some simple exploration of the dataset, I started by determining what time period my dataset was based and whether any months had more job postings than others. To accomplish this I extracted the year and month from the dataset and grouped by both.   
-For each showcase query I will be providing the SQL statement and the results which may be truncated if the resulting table from the query was too large.
+For my first queries, I wanted to do some simple exploration of the dataset, so I started by determining what time period my dataset was based in and whether any months had more job postings than others. To accomplish this I extracted the year and month from the dataset and grouped by both.   
+
+For each showcase query, I will provide the SQL statement and the results, which may be truncated if the resulting table from the query was too large.
 
 ```sql
 SELECT
@@ -65,14 +71,15 @@ ORDER BY year_posted, month_posted;
 | 11           | 2023        | 64404  |
 | 12           | 2023        | 55797  |
 
-From the results we can see that most of the dataset is from 2023 with a small portion of December 2022. We can also notice that there is a spike in postings around the new years with 92266 postings and that the rest of the year remaining mostly stable around 60000 with August as the other other notable exception with 75000 postings.
+From the results, we can see that most of the dataset is from 2023 with a small portion from December 2022. We can also notice that there is a spike in postings around the New years with 92266 postings, and that the rest of the year remaining mostly stable around 60000 with August as the other other notable exception with 75000 postings.
 
-I also wanted to check how many jobs are being offered from home versus locally so I did another quick query grouping by the job_work_from_home (True/False) column.
+I also wanted to check how many jobs are being offered from home versus locally, so I did another quick query grouping by the job_work_from_home (True/False) column.
+
 ```sql
 SELECT
     CASE
-        WHEN job_work_from_home THEN 'Work From Home'
-        ELSE 'In Person'
+        WHEN job_work_from_home THEN ‘Work From Home’
+        ELSE ‘In Person’
     END,
     COUNT(*)
 FROM job_postings_fact
@@ -87,6 +94,5 @@ The vast majority of job listings were in person job postings with there being o
 
 ### Available Jobs
 
-
-
 # Conclusions
+
