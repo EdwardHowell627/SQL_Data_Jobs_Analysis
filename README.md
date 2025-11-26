@@ -11,9 +11,8 @@ From this dataset, I wanted to know a few things:
 
 ![Visual of the tables in the dataset](assets/Database_Tables.png)
 
-*Dataset and visual above sourced from Luke Barousse on YouTube 
-
-https://www.youtube.com/watch?v=7mz73uXD9DA*
+*The Dataset and visual above are sourced from Luke Barousse on YouTube*  
+*https://www.youtube.com/watch?v=7mz73uXD9DA*
 
 The database as visualized above contains 4 tables. The largest table, job_postings_fact contains the key details about each documented job posting. It contains details such as the location of the job, whether it was work from home, the average salary, the company offering the job, and any skills needed for the job. 
 
