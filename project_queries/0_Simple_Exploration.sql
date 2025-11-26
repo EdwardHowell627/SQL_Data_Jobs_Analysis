@@ -2,17 +2,11 @@
 -- Date Posted
 SELECT
     EXTRACT(MONTH FROM job_posted_date) AS month_posted,
-    COUNT(job_posted_date)
-FROM job_postings_fact
-GROUP BY month_posted
-ORDER BY month_posted
-
-SELECT
     EXTRACT(YEAR FROM job_posted_date) AS year_posted,
     COUNT(job_posted_date)
 FROM job_postings_fact
-GROUP BY year_posted
-ORDER BY year_posted
+GROUP BY year_posted, month_posted
+ORDER BY year_posted, month_posted;
 
 
 -- Work From Home
@@ -23,4 +17,4 @@ SELECT
     END,
     COUNT(*)
 FROM job_postings_fact
-GROUP BY job_work_from_home
+GROUP BY job_work_from_home;

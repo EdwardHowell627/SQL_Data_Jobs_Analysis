@@ -25,4 +25,4 @@ FROM jobs_per_skill
 INNER JOIN skills_dim
     ON jobs_per_skill.skill_id = skills_dim.skill_id
 ORDER BY
-    skill_count DESC
+    skill_count DESC;
