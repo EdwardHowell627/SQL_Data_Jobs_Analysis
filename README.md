@@ -14,19 +14,18 @@ From this dataset, I wanted to know a few things:
 *The dataset and visual above are sourced from Luke Barousse on YouTube*  
 *https://www.youtube.com/watch?v=7mz73uXD9DA*
 
-The database as visualized above contains 4 tables. The largest table, job_postings_fact contains the key details about each documented job posting. It contains details such as the location of the job, whether it was work from home, the average salary, the company offering the job, and any skills needed for the job. 
+The database as visualized above contains 4 tables. The largest table, job_postings_fact contains the key details about each recorded job posting. It stores each postings with data such as the location of the job, whether it is a work from home job, the average salary, the company offering the job, and any skills needed for the job. 
 
-The company_dim table documents the companies offering each job, providing details like the company name and a link to them on Google.
+The company_dim table stores the companies offering each job, providing details like the company name and a link to them on Google.
 
-The skills_job_dim table is an intersection table meant to document which skills each job requires. An intersection table was necessary because jobs can have multiple skills and skills can have multiple jobs. 
+The skills_job_dim table is an intersection table meant to store which skills each job requires. An intersection table was necessary because jobs can have multiple skills and skills can have multiple jobs. 
 
-The skills_dim table documents the skills, providing details like the name of the skill and what type it is, such as “programming” or “analyst_tools”.
+The skills_dim table stores the skills, providing details like the name of the skill and what type it is, such as “programming” or “analyst_tools”.
 
   
 
 To see the SQL statements used to create the database, see [database_creation](database_creation)  
-
-*Since the same source as the dataset provided the statements, this project will not cover them. I understand the statements used and have the skills to create a database in SQL.*
+*These statements were provided alongside the database*
 
 # Tools Used
 
@@ -41,9 +40,9 @@ All the discussed queries are stored in [project_queries](project_queries)
 
 ### Simple Exploration
 
-For my first queries, I wanted to do some simple exploration of the dataset, so I started by determining what time period my dataset was based in and whether any months had more job postings than others. To accomplish this, I extracted the year and month from the dataset and grouped by both.   
+For my first queries, I wanted to do some simple exploration of the dataset, so I started by determining when the data was gathered and whether any months had more job postings than others. To accomplish this, I extracted the year and month from the dataset and grouped by both.   
 
-For each showcase query, I will provide the SQL statement and the resulting dataset, some have been truncated if there were too many rows.
+For each query in this project, I will provide the SQL statements and the resulting dataset, some datasets have been truncated if there were too many rows.
 
 ```sql
 SELECT
@@ -70,7 +69,7 @@ ORDER BY year_posted, month_posted;
 | 11           | 2023        | 64404  |
 | 12           | 2023        | 55797  |
 
-From the results, we can see that most of the dataset is from 2023, with a small portion from December 2022. We can also notice that there is a spike in postings around the New Year with 92266 postings and that the rest of the year remains mostly stable around 60000, with August as the only other notable exception with 75000 postings.
+From the results, we can see that most of the dataset is from 2023, with a small portion from December 2022. We can also notice that there is a spike in postings in January with 92266 postings and that the rest of the year remains mostly stable around 60000, with August as the only other notable exception with 75000 postings.  From this, it is likely that more companies are searching for new employees around the new years, however, this dataset doesn't have enough details about why the postings was made to determine if that is the true cause.
 
 I also wanted to check how many jobs are being offered from home versus locally, so I did another quick query grouping by the job_work_from_home (True/False) column.
 
@@ -89,11 +88,11 @@ GROUP BY job_work_from_home;
 | In Person       | 718080  |
 | Work From Home  | 69606   |
 
-The vast majority of job listings were in-person job postings, with there being over 10 times more in-person job postings than work-from-home job postings.
+The vast majority of job listings were in-person job postings, with there being over 10 times more in-person job postings than work-from-home job postings. Not all postings had a value for the job_work_from_home column.
 
 ### Available Jobs
 
-For the next step of my analysis, I wanted to determine how many of the postings were available to me. To achieve this, I used WHERE to filter the dataset to only jobs in Maryland or work-from-home based in the United States. I also pulled the columns for the yearly salary, job title, and joined with the company table to get the company name.
+For the next step of my analysis, I wanted to determine how many of the postings were available to me. To achieve this, I used WHERE to filter the dataset to only postings in Maryland or work-from-home postings based in the United States. I also pulled the columns for the yearly salary, job title, and joined with the company table to get the company name.
 
 ```SQL
 SELECT 
@@ -125,13 +124,13 @@ ORDER BY salary_year_avg DESC;
 
 *the first 10 of 28744 rows*
 
-One notable result from this query is that the salary value is null for a large portion of the dataset (including the 10 shown above). I did an additional query to filter out null values for yearly salary, and only 3000 of the 28744 rows had a non-null value. 
+One notable result from this query is that the salary value is null for a large portion of the dataset (including all 10 shown above). I did an additional query to filter out null values for yearly salary, and only 3000 of the 28744 rows had a non-null value. 
 
-Another notable result is that work-from-home jobs outnumber Maryland jobs. I modified the second query in the simple exploration step and determined that only 5766 of the 28744 jobs available were in Maryland.
+Another notable result is that work-from-home jobs outnumber Maryland jobs. I modified the second query in the simple exploration step and determined that only 5766 of the 28744 jobs available were in Maryland. For later queries I will filter out work-from-home jobs.
 
 ### Jobs by Title
 
-The dataset contains job postings for a variety of jobs in the data field and next I wanted to determine which types of jobs were documented and which had the highest salary. I also wanted to account for the findings of the previous query. To accomplish this, I ignored any work-from-home jobs to focus on Maryland jobs. Next, I grouped by the job title and counted how many postings each job has, averaged the yearly salaries, and counted how many data points (non-null values) there were for the salaries. By counting the number of data points I can determine which salaries have enough datapoints for their average salary to be representative of the true average.
+The dataset contains job postings for a variety of jobs in the data field and next I wanted to determine which types of jobs were documented and which had the highest salary. I started by grouping by the job title, then counted how many postings each job has, averaged the yearly salaries, and counted how many data points (non-null values) there were for the salaries. By counting the number of data points I can determine which salaries have enough datapoints for their average salary to be representative of the true average as salaries with low number of datapoints are more susceptible to outliers.
 
 ```SQL
 SELECT 
@@ -158,11 +157,11 @@ ORDER BY job_count DESC;
 | Machine Learning Engineer | 8         | 152500         | 1                  |
 | Cloud Engineer            | 7         |                | 0                  |
 
-From the results we can see that data scientists and data analysts have the most job postings in Maryland. We can also notice how for some titles the sample size is small enough that there are very few data points for the average salary. For example, cloud engineer has 7 postings, but 0 of which contain a salary. Other job titles like Data Engineer have many more data points, so their average salary will  be less affected by outliers and more representative of the true average salary. I am at college majoring in data science, so it is nice to see that it both has the most job postings and a good salary.
+From the results we can see that data scientists and data analysts have the most job postings in Maryland. We can also notice how for some titles the sample size is small enough that there are very few data points for the average salary. For example, cloud engineer has 7 postings, but 0 of which contain a salary. Other job titles like Data Engineer have many more data points, so their average salary will be less affected by outliers and more representative of the true average salary. I am at college majoring in data science, so it is nice to see that it both has the most job postings and a good salary.
 
 ### Skills in Demand
 
-Now that I have a good idea of how many job postings are made in my field, I want to determine which skills I should be focusing the most on as a data scientist. To accomplish this, I first started by using a CTE to query the intersection table. I grouped by the skill ID and counted how many jobs require each skill, the average salary of those jobs, and the number of data points for that salary. Next, to turn the CTE into a more readable table that uses the skill names instead of IDs and includes the skill type, I queried the CTE and joined it with the skill_dim table to get the skill name and type.
+Now that I have an idea of how many job postings are made in my field, I want to determine which skills I should be focusing the most on as a data scientist. To accomplish this, I first started by using a CTE to query the intersection table. I grouped by the skill ID and counted how many jobs require each skill, the average salary of those jobs, and the number of data points for that salary. Next, to turn the CTE into a more readable table that uses the skill names instead of IDs and includes the skill type, I queried the CTE and joined it with the skill_dim table to get the skill name and type.
 
 ```SQL
 WITH jobs_per_skill AS(
@@ -210,7 +209,7 @@ From the results we can see that Python is the most in-demand skill, with 1675 j
 
 ### Companies with Jobs
 
-Lastly, I wanted to determine which companies were offering jobs with skills within my skill set. Accomplishing this was a bit trickier than the others. I first needed to determine which jobs in the job_postings_fact table had at least one skill requirement within my skill set. For this, I used a subquery on the intersection table to get the distinct job IDs that have one of the skills in the list. Next, I used that subquery in the WHERE clause of a CTE to create a temporary dataset grouped by company ID with the average salary and number of jobs. I then query that CTE so I can include the company name and link on Google.
+Lastly, I wanted to determine which companies were offering jobs with skills within my skill set. Accomplishing this was a bit trickier than the others. I first needed to determine which jobs in the job_postings_fact table had at least one skill requirement within my skill set. For this, I used a subquery on the intersection table to get the distinct job IDs that have one of the skills in the list. Next, I used that subquery in the WHERE clause of a CTE to create a temporary dataset grouped by company ID with the average salary and number of postings. I then query that CTE so I can make it more readable by including the company name and link on Google.
 
 ```SQL
 WITH company_jobs AS (
