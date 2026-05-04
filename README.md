@@ -1,6 +1,6 @@
 # Introduction
 
-This project is the first of multiple projects meant to showcase my knowledge of GitHub and various data science tools, in this case SQL. For this project, I worked with a dataset documenting over 1,000,000 data job postings online (data scientist, data engineer, etc.). Since this project focuses on my knowledge of SQL, I will explain all my queries and outputs without focusing on visualizations, as my other projects will cover the visualization process more extensively.
+This project is the first of multiple projects meant to showcase my knowledge of GitHub and various data science tools, such as SQL. For this project, I worked with a dataset documenting over 1,000,000 online data job postings (data scientist, data engineer, etc.). Since this project focuses on my knowledge of SQL, I have explained all my queries and outputs without focusing on visualizations, as my other projects will cover the visualization process more extensively.
 
 From this dataset, I wanted to know a few things:
 - Which skills are in the most demand for data science jobs?
@@ -11,8 +11,7 @@ From this dataset, I wanted to know a few things:
 
 ![Visual of the tables in the dataset](assets/Database_Tables.png)
 
-*The dataset and visual above are sourced from Luke Barousse on YouTube*  
-*https://www.youtube.com/watch?v=7mz73uXD9DA*
+*The dataset and visual above are sourced from [Luke Barousse](https://www.lukebarousse.com/sql)*  
 
 The database as visualized above contains 4 tables. The largest table, job_postings_fact contains the key details about each recorded job posting. It stores each postings with data such as the location of the job, whether it is a work from home job, the average salary, the company offering the job, and any skills needed for the job. 
 
@@ -42,7 +41,7 @@ All the discussed queries are stored in [project_queries](project_queries)
 
 For my first queries, I wanted to do some simple exploration of the dataset, so I started by determining when the data was gathered and whether any months had more job postings than others. To accomplish this, I extracted the year and month from the dataset and grouped by both.   
 
-For each query in this project, I will provide the SQL statements and the resulting dataset, some datasets have been truncated if there were too many rows.
+For each query in this project, I will provide the SQL statements and the resulting dataset. Some datasets have been truncated if they were too long for easy presentation on GitHub.
 
 ```sql
 SELECT
@@ -268,13 +267,13 @@ From the results we can see that Guidehouse and Booz Allen Hamilton have made th
 
 Through this project I learned a lot about the data science job market and how I should prepare myself as a college student.  
 
-First, I should take time to build up knowledge in high-demand skills I'm less familiar with, such as Python and Power BI/Tableau. This project is the first of many I plan on doing. Eventually I plan on having a project for Excel, Power BI, and Python.
+**First**, I should take time to build up knowledge in high-demand skills I'm less familiar with, such as Python and Power BI/Tableau. This project is the first of many I plan on doing, using the knowledge gained from this project I plan on creating a project for Excel, Power BI, and Python.
 
-Second, there are lots of jobs in my field, and companies like Guidehouse and others have collectively made hundreds of postings in my skill set. This doesn't even account for jobs and internships that were not posted online or the thousands of work-from-home jobs.
+**Second**, there are lots of jobs in my field, and companies like Guidehouse and others have collectively made hundreds of postings in my skill set. This doesn't even account for jobs and internships that were not posted online or the thousands of work-from-home jobs.
 
-Third, jobs requiring skills in Java offer the highest pay among the top skills, but other similar skills like Python are much more common with a still comparable salary. Similarly, the company Peraton offers the highest-paying jobs among the top companies, but Booz Allen Hamilton has made more job postings with comparable salaries.
+**Third**, jobs requiring skills in Java offer the highest pay among the top skills, but other similar skills like Python are much more common with a still comparable salary. Similarly, the company Peraton offers the highest-paying jobs among the top companies, but Booz Allen Hamilton has made more job postings with comparable salaries.
 
-Thank you for reading my SQL project. I hope you found some useful takeaways for yourself too. 
+Thank you for reading my SQL project. I hope you have found some useful takeaways for yourself too. 
 
 
 
