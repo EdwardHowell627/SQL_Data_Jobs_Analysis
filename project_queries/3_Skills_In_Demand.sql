@@ -18,7 +18,7 @@ SELECT
     skill_count,
     skills AS skill_name,
     skills_dim.type AS skill_type,
-    row_number() OVER(ORDER BY average_salary DESC ) AS salary_ranking,
+    ROW_NUMBER() OVER(ORDER BY average_salary DESC ) AS salary_ranking,
     average_salary,
     data_points AS salary_datapoints
 FROM jobs_per_skill
