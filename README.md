@@ -25,10 +25,10 @@ To see the SQL statements used to create the database, see [database_creation](d
 *These statements were provided alongside the database.*
 # Tools Used
 
-**SQL:**  Used to query the dataset.  
-**PostgreSQL:** The chosen database management system.  
-**Visual Studio Code:** Used to write my SQL queries. Connected to my PostgreSQL database using the SQLTools extension.  
-**Git & GitHub:** Used to document and share my SQL queries and analysis.
+- **SQL:**  Used to query the dataset.  
+- **PostgreSQL:** The chosen database management system.  
+- **Visual Studio Code:** Used to write my SQL queries. Connected to my PostgreSQL database using the SQLTools extension.  
+- **Git & GitHub:** Used to document and share my SQL queries and analysis.
 
 # Analysis
 
