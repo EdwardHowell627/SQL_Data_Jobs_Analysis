@@ -18,9 +18,11 @@ SELECT
     skill_count,
     skills AS skill_name,
     skills_dim.type AS skill_type,
+    row_number() OVER(ORDER BY average_salary DESC ) AS salary_ranking,
     average_salary,
     data_points AS salary_datapoints
 FROM jobs_per_skill
 INNER JOIN skills_dim
     ON jobs_per_skill.skill_id = skills_dim.skill_id
+WHERE average_salary IS NOT NULL
 ORDER BY skill_count DESC;
