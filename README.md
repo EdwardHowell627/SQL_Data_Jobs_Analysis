@@ -13,19 +13,16 @@ From this dataset, I wanted to know a few things:
 
 *The dataset and visual above are sourced from [Luke Barousse](https://www.lukebarousse.com/sql)*  
 
-The database as visualized above contains 4 tables. The largest table, job_postings_fact contains the key details about each recorded job posting. It stores each postings with data such as the location of the job, whether it is a work from home job, the average salary, the company offering the job, and any skills needed for the job. 
+The database, as visualized above, contains 4 tables. The largest table, job_postings_fact, contains the key details about each recorded job posting. It stores each posting with data such as the location of the job, whether it is a work-from-home job, the average salary, the company offering the job, and any skills needed for the job. 
 
 The company_dim table stores the companies offering each job, providing details like the company name and a link to them on Google.
 
 The skills_job_dim table is an intersection table meant to store which skills each job requires. An intersection table was necessary because jobs can have multiple skills and skills can have multiple jobs. 
 
-The skills_dim table stores the skills, providing details like the name of the skill and what type it is, such as “programming” or “analyst_tools”.
-
-  
+The skills_dim table stores the skills, providing details like the name of the skill and what type it is, such as “programming” or "analyst_tools." 
 
 To see the SQL statements used to create the database, see [database_creation](database_creation)  
-*These statements were provided alongside the database*
-
+*These statements were provided alongside the database.*
 # Tools Used
 
 **SQL:**  Used to query the dataset.  
@@ -35,7 +32,7 @@ To see the SQL statements used to create the database, see [database_creation](d
 
 # Analysis
 
-All the discussed queries are stored in [project_queries](project_queries)  
+All the discussed queries are stored in [project_queries](project_queries).
 
 ### Simple Exploration
 
@@ -68,7 +65,7 @@ ORDER BY year_posted, month_posted;
 | 11           | 2023        | 64404  |
 | 12           | 2023        | 55797  |
 
-From the results, we can see that most of the dataset is from 2023, with a small portion from December 2022. We can also notice that there is a spike in postings in January with 92266 postings and that the rest of the year remains mostly stable around 60000, with August as the only other notable exception with 75000 postings.  From this, it is likely that more companies are searching for new employees around the new years, however, this dataset doesn't have enough details about why the postings was made to determine if that is the true cause.
+From the results, we can see that most of the dataset is from 2023, with a small portion from December 2022. We can also notice that there is a spike in postings in January with 92266 postings and that the rest of the year remains mostly stable around 60000, with August as the only other notable exception with 75000 postings.  From this, it is likely that more companies are searching for new employees around the new year. However, this dataset doesn't have enough details about why the posting was made to determine if that is the true cause.
 
 I also wanted to check how many jobs are being offered from home versus locally, so I did another quick query grouping by the job_work_from_home (True/False) column.
 
@@ -91,7 +88,7 @@ The vast majority of job listings were in-person job postings, with there being 
 
 ### Available Jobs
 
-For the next step of my analysis, I wanted to determine how many of the postings were available to me. To achieve this, I used WHERE to filter the dataset to only postings in Maryland or work-from-home postings based in the United States. I also pulled the columns for the yearly salary, job title, and joined with the company table to get the company name.
+For the next step of my analysis, I wanted to determine how many of the postings were available to me. To achieve this, I used WHERE to filter the dataset to only postings in Maryland or work-from-home postings based in the United States. I also pulled the columns for the yearly salary and job title and joined them with the company table to get the company name.
 
 ```SQL
 SELECT 
@@ -113,12 +110,12 @@ ORDER BY salary_year_avg DESC;
 | Anywhere                 | Data Analyst        |                | Axelon Services Corporation  |
 | Anywhere                 | Data Engineer       |                | Signify Technology           |
 | Anywhere                 | Data Engineer       |                | Enlighten                    |
-| Greenbelt, MD           | Data Scientist      |                | ADNET Systems, Inc.          |
+| Greenbelt, MD            | Data Scientist      |                | ADNET Systems, Inc.          |
 | Anywhere                 | Data Engineer       |                | Signature Consultants        |
 | Anywhere                 | Data Engineer       |                | OneSeven Tech                |
-| Bethesda, MD            | Data Scientist      |                | Leidos                       |
-| Linthicum Heights, MD   | Senior Data Analyst |                | BAE Systems                  |
-| Fort Meade, MD          | Data Engineer       |                | ClearanceJobs                |
+| Bethesda, MD             | Data Scientist      |                | Leidos                       |
+| Linthicum Heights, MD    | Senior Data Analyst |                | BAE Systems                  |
+| Fort Meade, MD           | Data Engineer       |                | ClearanceJobs                |
 | Anywhere                 | Data Scientist      |                | KE Staffing                  |
 
 *the first 10 of 28744 rows*
@@ -129,7 +126,7 @@ Another notable result is that work-from-home jobs outnumber Maryland jobs. I mo
 
 ### Jobs by Title
 
-The dataset contains job postings for a variety of jobs in the data field and next I wanted to determine which types of jobs were documented and which had the highest salary. I started by grouping by the job title, then counted how many postings each job has, averaged the yearly salaries, and counted how many data points (non-null values) there were for the salaries. By counting the number of data points I can determine which salaries have enough datapoints for their average salary to be representative of the true average as salaries with low number of datapoints are more susceptible to outliers.
+The dataset contains job postings for a variety of jobs in the data field, and next I wanted to determine which types of jobs were documented and which had the highest salary. I started by grouping by the job title, then counted how many postings each job has, averaged the yearly salaries, and counted how many data points (non-null values) there were for the salaries. By counting the number of data points, I can determine which salaries have enough datapoints for their average salary to be representative of the true average, as salaries with a low number of datapoints are more susceptible to outliers.
 
 ```SQL
 SELECT 
@@ -156,7 +153,7 @@ ORDER BY job_count DESC;
 | Machine Learning Engineer | 8         | 152500         | 1                  |
 | Cloud Engineer            | 7         |                | 0                  |
 
-From the results we can see that data scientists and data analysts have the most job postings in Maryland. We can also notice how for some titles the sample size is small enough that there are very few data points for the average salary. For example, cloud engineer has 7 postings, but 0 of which contain a salary. Other job titles like Data Engineer have many more data points, so their average salary will be less affected by outliers and more representative of the true average salary. I am at college majoring in data science, so it is nice to see that it both has the most job postings and a good salary.
+From the results we can see that data scientists and data analysts have the most job postings in Maryland. We can also notice how for some titles the sample size is small enough that there are very few data points for the average salary. For example, cloud engineer has 7 postings, none of which contain a salary. Other job titles, like Data Engineer, have many more data points, so their average salary will be less affected by outliers and more representative of the true average salary. I am at college majoring in data science, so it is nice to see that it both has the most job postings and a good salary.
 
 ### Skills in Demand
 
@@ -182,29 +179,31 @@ SELECT
     skill_count,
     skills AS skill_name,
     skills_dim.type AS skill_type,
+    row_number() OVER(ORDER BY average_salary DESC ) AS salary_ranking,
     average_salary,
     data_points AS salary_datapoints
 FROM jobs_per_skill
 INNER JOIN skills_dim
     ON jobs_per_skill.skill_id = skills_dim.skill_id
+WHERE average_salary IS NOT NULL
 ORDER BY skill_count DESC;
 ```
-| skill_count | skill_name | skill_type     | average_salary | salary_datapoints |
-|-------------|------------|----------------|----------------|--------------------|
-| 1675        | python     | programming    | 125716         | 119                |
-| 1051        | r          | programming    | 119944         | 74                 |
-| 858         | sql        | programming    | 129824         | 61                 |
-| 537         | tableau    | analyst_tools  | 118895         | 28                 |
-| 354         | aws        | cloud          | 126612         | 23                 |
-| 322         | java       | programming    | 135940         | 21                 |
-| 319         | sas        | analyst_tools  | 123576         | 25                 |
-| 319         | sas        | programming    | 123576         | 25                 |
-| 268         | hadoop     | libraries      | 120413         | 25                 |
-| 267         | excel      | analyst_tools  | 119533         | 21                 |
+| skill_count | skill_name | skill_type    | salary_ranking | average_salary | salary_datapoints |
+| ----------: | ---------- | ------------- | -------------: | -------------: | ----------------: |
+|        1675 | python     | programming   |             42 |         125716 |               119 |
+|        1051 | r          | programming   |             54 |         119944 |                74 |
+|         858 | sql        | programming   |             33 |         129824 |                61 |
+|         537 | tableau    | analyst_tools |             56 |         118895 |                28 |
+|         354 | aws        | cloud         |             39 |         126612 |                23 |
+|         322 | java       | programming   |             24 |         135940 |                21 |
+|         319 | sas        | programming   |             44 |         123576 |                25 |
+|         319 | sas        | analyst_tools |             43 |         123576 |                25 |
+|         268 | hadoop     | libraries     |             50 |         120413 |                25 |
+|         267 | excel      | analyst_tools |             55 |         119533 |                21 |
 
 *The first 10 of 169 rows*
 
-From the results we can see that Python is the most in-demand skill, with 1675 job postings requiring it. SQL is in third with 858 postings. Of the top 10 skills, Java has the highest average salary at $135940.
+From the results we can see that Python is the most in-demand skill, with 1675 job postings requiring it. SQL is in third with 858 postings. Of the top 10 skills, Java has the highest average salary at $135940. Even though the salaries of the most in-demand jobs don't rank very high overall, the fact that they have many more data points to back them up, gives them more validity and means they are not impacted by outliers as much as the higher-ranked salary skills are, most of which have very few data points.
 
 ### Companies with Jobs
 
@@ -259,19 +258,19 @@ ORDER BY job_count DESC;
 
 
 *The first 10 of 577 rows*  
-*The Google link column has been exluded due to it's length*
+*The Google link column has been excluded due to it's length*
 
-From the results we can see that Guidehouse and Booz Allen Hamilton have made the most job postings, with a combined 338 postings for data scientists. However, Booz Allen Hamilton seems to be offering higher salaries with more datapoints to back it. Peraton offer the highest average salary among the top companies but has only a third of the offerings of Booz Allen Hamilton.
+From the results we can see that Guidehouse and Booz Allen Hamilton have made the most job postings, with a combined 338 postings for data scientists. However, Booz Allen Hamilton seems to be offering higher salaries with more data points to back it. Peraton offers the highest average salary among the top companies but has only a third of the offerings of Booz Allen Hamilton.
 
 # Conclusion and Takeaway
 
 Through this project I learned a lot about the data science job market and how I should prepare myself as a college student.  
 
-**First**, I should take time to build up knowledge in high-demand skills I'm less familiar with, such as Python and Power BI/Tableau. This project is the first of many I plan on doing, using the knowledge gained from this project I plan on creating a project for Excel, Power BI, and Python.
+**First**, I should take time to build up knowledge in high-demand skills I'm less familiar with, such as Python and Power BI/Tableau. This project is the first of multiple projects I will be doing. Using the knowledge I have gained from this project, I plan on learning and creating projects for: Excel, Power BI, and Python.
 
 **Second**, there are lots of jobs in my field, and companies like Guidehouse and others have collectively made hundreds of postings in my skill set. This doesn't even account for jobs and internships that were not posted online or the thousands of work-from-home jobs.
 
-**Third**, jobs requiring skills in Java offer the highest pay among the top skills, but other similar skills like Python are much more common with a still comparable salary. Similarly, the company Peraton offers the highest-paying jobs among the top companies, but Booz Allen Hamilton has made more job postings with comparable salaries.
+**Third**, jobs requiring skills in Java offer the highest pay among the highest demand skills, but other similar skills, like Python, are much more common with a still comparable salary. Similarly, the company Peraton offers the highest-paying jobs among the top companies, but Booz Allen Hamilton has made more job postings with comparable salaries.
 
 Thank you for reading my SQL project. I hope you have found some useful takeaways for yourself too. 
 
