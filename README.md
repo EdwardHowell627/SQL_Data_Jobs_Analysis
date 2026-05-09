@@ -122,11 +122,11 @@ ORDER BY salary_year_avg DESC;
 
 One notable result from this query is that the salary value is null for a large portion of the dataset (including all 10 shown above). I did an additional query to filter out null values for yearly salary, and only 3000 of the 28744 rows had a non-null value. 
 
-Another notable result is that work-from-home jobs outnumber Maryland jobs. I modified the second query in the simple exploration step and determined that only 5766 of the 28744 jobs available were in Maryland. For later queries I will filter out work-from-home jobs.
+Another notable result is that work-from-home jobs outnumber Maryland jobs. I modified the second query in the simple exploration step and determined that only 5766 of the 28744 jobs available were in Maryland. For later queries I will filter out work-from-home jobs to instead focus specifically on Maryland jobs.
 
 ### Jobs by Title
 
-The dataset contains job postings for a variety of jobs in the data field, and next I wanted to determine which types of jobs were documented and which had the highest salary. I started by grouping by the job title, then counted how many postings each job has, averaged the yearly salaries, and counted how many data points (non-null values) there were for the salaries. By counting the number of data points, I can determine which salaries have enough datapoints for their average salary to be representative of the true average, as salaries with a low number of datapoints are more susceptible to outliers.
+The dataset contains job postings for a variety of jobs in the data field, and next I wanted to determine how many of each type of jobs were documented and which had the highest salary. I started by grouping by the job title, then counted how many postings each job has, averaged the yearly salaries, and counted how many data points (non-null values) there were for the salaries. By counting the number of data points, I can determine which salaries have enough datapoints for their average salary to be representative of the true average, as salaries with a low number of datapoints are more susceptible to outliers.
 
 ```SQL
 SELECT 
@@ -179,6 +179,7 @@ SELECT
     skill_count,
     skills AS skill_name,
     skills_dim.type AS skill_type,
+    SUM(skill_count) OVER(PARTITION BY skills_dim.type) AS type_count,
     ROW_NUMBER() OVER(ORDER BY average_salary DESC ) AS salary_ranking,
     average_salary,
     data_points AS salary_datapoints
@@ -203,11 +204,11 @@ ORDER BY skill_count DESC;
 
 *The first 10 of 169 rows*
 
-From the results we can see that Python is the most in-demand skill, with 1675 job postings requiring it. SQL is in third with 858 postings. Of the top 10 skills, Java has the highest average salary at $135940. Even though the salaries of the most in-demand jobs don't rank very high overall, the fact that they have many more data points to back them up, gives them more validity and means they are not impacted by outliers as much as the higher-ranked salary skills are, most of which have very few data points.
+From the results we can see that for data scientists in Maryland, Python is the most in-demand skill, with 1675 job postings requiring it. SQL is in third with 858 postings. Of the top 10 skills, Java has the highest average salary at $135940. Additionally, the most in-demand skills are programming skills with over 5000 postings having a programming skill required. Even though the salaries of the most in-demand jobs don't rank very high overall, the fact that they have many more data points to back them up, gives them more validity and means they are not impacted by outliers as much as the higher-ranked salary skills are, most of which have very few data points.
 
 ### Companies with Jobs
 
-Lastly, I wanted to determine which companies were offering jobs with skills within my skill set. Accomplishing this was a bit trickier than the others. I first needed to determine which jobs in the job_postings_fact table had at least one skill requirement within my skill set. For this, I used a subquery on the intersection table to get the distinct job IDs that have one of the skills in the list. Next, I used that subquery in the WHERE clause of a CTE to create a temporary dataset grouped by company ID with the average salary and number of postings. I then query that CTE so I can make it more readable by including the company name and link on Google.
+Lastly, I wanted to determine which companies were offering Maryland data science jobs with skills within my skill set. Accomplishing this was a bit trickier than the others. I first needed to determine which jobs in the job_postings_fact table had at least one skill requirement within my skill set. For this, I used a subquery on the intersection table to get the distinct job IDs that have one of the skills in the list. Next, I used that subquery in the WHERE clause of a CTE to create a temporary dataset grouped by company ID with the average salary and number of postings. I then query that CTE so I can make it more readable by including the company name and link on Google.
 
 ```SQL
 WITH company_jobs AS (
