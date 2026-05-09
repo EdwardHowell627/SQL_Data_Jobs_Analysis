@@ -9,7 +9,7 @@ From this dataset, I wanted to know a few things:
 
 # Dataset
 
-![Visual of the tables in the dataset](assets/ERD_PostgreSQL.png)
+![Visual of the tables in the dataset](assets/ERD_postgreSQL.png)
 
 *The dataset and visual above are sourced from [Luke Barousse](https://www.lukebarousse.com/sql)*  
 
