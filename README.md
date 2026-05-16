@@ -11,7 +11,7 @@ From this dataset, I wanted to know a few things:
 
 ![Visual of the tables in the dataset](assets/ERD_postgreSQL.png)
 
-*The dataset and visual above are sourced from [Luke Barousse](https://www.lukebarousse.com/sql)*  
+*The dataset is sourced from [Luke Barousse](https://drive.google.com/drive/folders/1egWenKd_r3LRpdCf4SsqTeFZ1ZdY3DNx).
 
 The database, as visualized above, contains 4 tables. The largest table, job_postings_fact, contains the key details about each recorded job posting. It stores each posting with data such as the location of the job, whether it is a work-from-home job, the average salary, the company offering the job, and any skills needed for the job. 
 
