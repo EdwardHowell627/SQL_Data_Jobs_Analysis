@@ -1,6 +1,6 @@
 # Introduction
 
-This project is the first of multiple projects meant to showcase my knowledge of GitHub and various data science tools, such as SQL. For this project, I worked with a dataset documenting over 1,000,000 online data job postings (data scientist, data engineer, etc.). Since this project focuses on my knowledge of SQL, I have explained all my queries and outputs without focusing on visualizations, as my other projects will cover the visualization process more extensively.
+This is the first of four projects meant to showcase my knowledge of GitHub and various data science tools, such as SQL. For this project, I worked with a dataset documenting over 1,000,000 online data job postings (data scientist, data engineer, etc.). Since this project focuses on my knowledge of SQL, I have explained all my queries and outputs without focusing on visualizations, as my other projects will cover the visualization process more extensively.
 
 From this dataset, I wanted to know a few things:
 - Which skills are in the most demand for data science jobs?
