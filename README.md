@@ -7,6 +7,13 @@ From this dataset, I wanted to know a few things:
 - Which companies are offering the most jobs that fit my skill set?
 - Which skills and companies offer the highest pay?
 
+# Tools Used
+
+- **SQL:**  Used to query the dataset.  
+- **PostgreSQL:** The chosen database management system.  
+- **Visual Studio Code:** Used to write my SQL queries. Connected to my PostgreSQL database using the SQLTools extension.  
+- **Git & GitHub:** Used to document and share my SQL queries and analysis.
+
 # Dataset
 
 ![Visual of the tables in the dataset](assets/ERD_postgreSQL.png)
@@ -23,12 +30,6 @@ The skills_dim table stores the skills, providing details like the name of the s
 
 To see the SQL statements used to create the database, see [database_creation](database_creation)  
 *These statements were provided alongside the database.*
-# Tools Used
-
-- **SQL:**  Used to query the dataset.  
-- **PostgreSQL:** The chosen database management system.  
-- **Visual Studio Code:** Used to write my SQL queries. Connected to my PostgreSQL database using the SQLTools extension.  
-- **Git & GitHub:** Used to document and share my SQL queries and analysis.
 
 # Analysis
 
